@@ -21,7 +21,7 @@ export default class App extends Component {
     render() {
         return (
             <View style={style.container}>
-                <MainFlatList data={flatListData} />
+                <MainFlatList data={flatListData}/>
             </View>
         );
     }
