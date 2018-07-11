@@ -1,68 +1,50 @@
 import React, { Component } from 'react'
-import { FlatList, Text, View, Image } from 'react-native'
-import Swipeout from 'react-native-swipeout'
+import { FlatList, Text, View, Image, Alert } from 'react-native'
 import style from './styles'
+import {FlatListItem} from './FlatListItem'
 
 export default class MainFlatList extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            data : props.data
+            data: props.data,
+            flatListStyle: props.style
         }
     }
-    refreshFlatList(){
-        alert('onRefresh')
-    }
-    render() {
-        return (
-            <FlatList style={style.flatList} renderItem={({ item,index }) => {
-                return (
-                    <FlatListItem data={item} onDelete={()=>{
-                        this.state.data.splice(index,1)
-                        this.setState({
-                            data:this.state.data
-                        })
-                        alert(index)
-                    }}/>
-                )
-            }} data={this.props.data}  />
-        )
-    }
-}
 
-class FlatListItem extends Component {
+    _onDelete = (index)=>{
+        Alert.alert('', 'Are you sure want to delete ?',
+        [{
+            text: 'cancel'
+        }, {
+            text: 'ok', onPress:()=> this._onDeleteConfirm(index)
+        }])
+    }
 
-    constructor(props) {
-        super(props);
+    _onDeleteConfirm = (index) => {
+        this.state.data.splice(index, 1)
+        if (this.state.data.length != 0) {
+            this.setState({
+                data: this.state.data
+            })
+        } else {
+            this.setState({
+                flatListStyle: {
+                    height: 0
+                }
+            })
+        }
+    }
     
-    }
-
     render() {
-        swipeoutBtns = [
-            {
-                text: 'Delete',
-                onPress:this.props.onDelete
-            }
-        ]
+        flatListStyle = this.state.flatListStyle != null ? this.state.flatListStyle : style.containers;
         return (
-            <Swipeout right={swipeoutBtns}>
-                <View style={style.flatListItem}>
-                    <Image source={this.props.data.image} style={style.image} />
-                    <View style={style.content}>
-                        <Text numberOfLines={1} style={style.title}>{this.props.data.title}</Text>
-                        <Text numberOfLines={3} style={style.desciption}>{this.props.data.desciption}</Text>
-                        <View style={style.others}>
-                            <Text numberOfLines={1} style={style.type}>{this.props.data.type}</Text>
-                            <Text numberOfLines={1} style={style.timeStamp}> / by </Text>
-                            <Text numberOfLines={1} style={style.author}> {this.props.data.author}</Text>
-                            <Text numberOfLines={1} style={style.timeStamp}> / </Text>
-                            <Text numberOfLines={1} style={style.timeStamp}>{this.props.data.timeStamp}</Text>
-                        </View>
-
-                    </View>
-                    <Text>{this.props.data.key}</Text>
-                </View>
-            </Swipeout>
+            <FlatList style={flatListStyle} renderItem={({ item, index }) => {
+                return (
+                    <FlatListItem data={item} onDelete={() => this._onDelete(index)} />
+                )
+            }} data={this.props.data} />
         )
     }
 }
+

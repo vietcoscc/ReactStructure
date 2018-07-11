@@ -1,2 +1,3 @@
 import {MainFlatList} from './MainFlatList'
-export {MainFlatList}
+import {Header} from './Header'
+export {MainFlatList,Header}
