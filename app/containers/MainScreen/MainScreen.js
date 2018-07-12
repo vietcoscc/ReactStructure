@@ -8,10 +8,9 @@
 
 import React, { Component } from 'react';
 import { Platform, View, Dimensions, Text, FlatList,Button } from 'react-native';
-import { MainFlatList } from './../../components'
+import { MainFlatList ,Header } from './../../components'
 import style from './styles'
 import data from './../../constants/data'
-import {Header} from './../../components'
 export default class App extends Component {
     constructor(props){
         super(props)

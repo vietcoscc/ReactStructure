@@ -26,7 +26,6 @@ export default class FlatListItem extends Component {
                         </View>
 
                     </View>
-                    <Text>{this.props.data.key}</Text>
                 </View>
             </Swipeout>
         )

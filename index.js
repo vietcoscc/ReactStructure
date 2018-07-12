@@ -22,9 +22,5 @@ const drawer = DrawerNavigator(
        initialRouteName:'first'
     }
 )
-const stack = StackNavigator({
-    main:{
-        screen: drawer
-    }
-})
+
 AppRegistry.registerComponent(appName, () => drawer);

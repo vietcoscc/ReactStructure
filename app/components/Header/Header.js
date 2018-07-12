@@ -11,8 +11,8 @@ export default class Header extends Component {
     render() {
         return (
             <View style={style.containers}>
-                <TouchableHighlight underlayColor='white' style={style.drawerButton} onPress={() => this._onPress()}>
-                    <Image source={require('./../../assets/images/icons/baseline_menu_black_24dp.png')} />
+                <TouchableHighlight underlayColor='gray' style={style.drawerButton} onPress={() => this._onPress()}>
+                    <Image source={require('./../../assets/images/icons/baseline_menu_white_24dp.png')} style={style.drawerButtonIcon} />
                 </TouchableHighlight>
             </View>
         )
