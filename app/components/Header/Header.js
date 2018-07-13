@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, TouchableHighlight, Image } from 'react-native'
+import { View, TouchableHighlight, Image, Text } from 'react-native'
 import style from './styles'
 
 export default class Header extends Component {
@@ -14,6 +14,9 @@ export default class Header extends Component {
                 <TouchableHighlight underlayColor='gray' style={style.drawerButton} onPress={() => this._onPress()}>
                     <Image source={require('./../../assets/images/icons/baseline_menu_white_24dp.png')} style={style.drawerButtonIcon} />
                 </TouchableHighlight>
+                <View style={style.title}>
+                    <Text style={style.titleContent}>{this.props.title}</Text>
+                </View>
             </View>
         )
     }
