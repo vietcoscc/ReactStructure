@@ -28,7 +28,7 @@ export default class ThirdScreen extends Component {
     render() {
         return (
             <View style={style.container}>
-                <Header navigation={this.props.navigation} />
+                <Header navigation={this.props.navigation} title={'ThirdScreen'} />
                 <View style={style.body}>
                     <Text style={style.content}>Third screen</Text>
                     <View style={style.btnShowModal}>
